@@ -48,7 +48,7 @@ pip install -r
 
 ## code examples
 ### Chapter 1 - Introduction
-Multilayer Perceptron - MLP on MNIST
-Convolutional Neural Network - CNN on MNIST
-Recurrent Neural Network - RNN on MNIST
+* Multilayer Perceptron - MLP on MNIST
+* Convolutional Neural Network - CNN on MNIST
+* Recurrent Neural Network - RNN on MNIST
 
