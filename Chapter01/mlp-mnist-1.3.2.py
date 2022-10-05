@@ -87,18 +87,26 @@ hidden_units = 256
 dropout = 0.45
 
 # model is a 3 layers MLP with ReLU and dropout after each layer
+#
+# Dense(784) -> Activation('relu') -> Dropout(0.45) -> Dense(256) ->  Activation('relu') --> Dropout(0.45) -> Dense(10) --> Activation('softmax')
+#
+'''
+* Dense layer is the regular deeply connected neural network layer. It is most common and frequently used layer. 
+  Dense layer does the below operation on the input and return the output
+  
+'''
+
 model = Sequential()
-## first layer
+## first layer with N = 28*28 = 784
 model.add(Dense(hidden_units, input_dim = input_size))
 model.add(Activation('relu'))
 model.add(Dropout(dropout))
-## second layer
+## second layer with N = 256
 model.add(Dense(hidden_units))
 model.add(Activation('relu'))
 model.add(Dropout(dropout))
-## third layer
+## third layer with N = 10 (0..9)
 model.add(Dense(num_labels))
-
 # this is the output for one-hot vector
 model.add(Activation('softmax'))
 model.summary()
