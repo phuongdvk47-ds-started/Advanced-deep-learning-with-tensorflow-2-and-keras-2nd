@@ -31,8 +31,19 @@ EOF
 # bash, zsh, csh ...
 conda init bash
 ```
+### Thiết lập môi trường cho Tensorflow 2 and Keras
 
-### 
+```bash
+# To update latest all packages
+conda update conda -y
+#
+# create python 3.9 for data scientist
+conda create --name py39ds python=3.9 -y
+#
+# To activate this environment, use
+conda activate py39ds
+pip install -r 
+```
 
 
 ## code examples
