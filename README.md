@@ -41,9 +41,12 @@ conda update conda -y
 conda create --name py39ds python=3.9 -y
 #
 # To activate this environment, use
-conda activate py39ds
-pip install -r 
+sudo apt-get update && sudo apt install -y graphviz
+conda activate py39ds && pip install -r requirements.txt
 ```
+
+### Thiết lập môi trường trên Visual Studio Code
+* Cài đặt các plugin: WSL, Python, Python Environment Manager
 
 
 ## code examples
