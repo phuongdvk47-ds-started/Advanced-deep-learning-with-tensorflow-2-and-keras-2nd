@@ -1,0 +1,13 @@
+numpy
+scipy
+Pillow
+matplotlib
+scikit-image
+h5py
+graphviz
+pydot
+pydot_ng
+termcolor
+gym
+tensorflow-probability
+tensorflow-addons
