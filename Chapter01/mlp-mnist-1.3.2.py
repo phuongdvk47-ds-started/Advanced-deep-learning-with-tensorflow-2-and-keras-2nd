@@ -56,7 +56,6 @@ array([[0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
        [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.],
        [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
        [0., 0., 0., 0., 0., 0., 0., 0., 0., 1.]], dtype=float32)
-
 >>> y_test[:5]
 array([[0., 0., 0., 0., 0., 0., 0., 1., 0., 0.],
        [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
@@ -111,5 +110,3 @@ model.add(Dense(num_labels))
 model.add(Activation('softmax'))
 model.summary()
 plot_model(model, to_file= output_dir + '/mpl-mnist.png', show_shapes=True)
-
-
