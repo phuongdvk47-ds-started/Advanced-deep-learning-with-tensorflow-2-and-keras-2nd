@@ -7,7 +7,10 @@
 	"context": "..",
 
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../Dockerfile"
+	"dockerFile": "../Dockerfile",
+	"extensions": ["ms-python.python"],
+	"runArgs": [ "--gpus", "all", "--ipc=host", "--ulimit", "memlock=-1", "--ulimit", "stack=67108864"]
+
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
