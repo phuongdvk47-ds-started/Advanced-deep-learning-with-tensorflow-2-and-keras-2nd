@@ -6,14 +6,11 @@ https://github.com/PacktPublishing/Advanced-Deep-Learning-with-Keras
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-from statistics import mode
 
 import os
 import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Activation, Dropout
-from tensorflow.keras.utils import to_categorical, plot_model
-from tensorflow.keras.datasets import mnist
+import tensorflow as tf
+
 
 
 output_dir = "output"
@@ -24,7 +21,7 @@ if not isExist:
    print("The new directory '", output_dir, "' is created!")
 
 # load MNIST dataset
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
 ''' The shape of an array is the number of elements in each dimension.
 >>> x_train.shape
@@ -46,8 +43,8 @@ array([5, 0, 4, 1, 9], dtype=uint8)
 >>> y_test[:5]
 array([7, 2, 1, 0, 4], dtype=uint8)
 '''
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+y_train = tf.keras.utils.to_categorical(y_train)
+y_test = tf.keras.utils.to_categorical(y_test)
 
 ''' After convert
 >>> y_train[:5]
@@ -96,20 +93,31 @@ dropout = 0.45
   
 '''
 
-model = Sequential()
+model = tf.keras.models.Sequential()
 ## first layer with N = 28*28 = 784
-model.add(Dense(hidden_units, input_dim = input_size))
-model.add(Activation('relu'))
-model.add(Dropout(dropout))
+model.add(tf.keras.layers.Dense(hidden_units, activation='relu', input_dim = input_size))
+model.add(tf.keras.layers.Dropout(dropout))
 ## second layer with N = 256
-model.add(Dense(hidden_units))
-model.add(Activation('relu'))
-model.add(Dropout(dropout))
+model.add(tf.keras.layers.Dense(hidden_units, activation='relu'))
+model.add(tf.keras.layers.Dropout(dropout))
 ## third layer with N = 10 (0..9)
-model.add(Dense(num_labels))
-# this is the output for one-hot vector
-model.add(Activation('softmax'))
+model.add(tf.keras.layers.Dense(num_labels, activation='softmax'))
 model.summary()
-plot_model(model, to_file= output_dir + '/mpl-mnist.png', show_shapes=True)
+#tf.keras.utils.plot_model(model, to_file= output_dir + '/mpl-mnist.png', show_shapes=True)
+
+
+# Loss function for one-hot vector
+# use of adam optimizer
+# accuracy is good mectric for classification tasks
+model.compile(loss = 'categorical_crossentropy', 
+              optimizer='adam',
+              metrics=['accuracy'])
+# train the network
+model.fit(x_train, y_train, epochs=20, batch_size=batch_size) 
+
+# validate the model on test dataset to determine generalization
+_, acc = model.evaluate(x_test, y_test, batch_size=batch_size, verbose=0)
+
+print("\n Test accuracy: %.1f%%" % (100.0 * acc))
 
 
