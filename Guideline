@@ -1,0 +1,3 @@
+git config --global credential.helper store
+echo “https://phuongdvk47.ds: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@github.com“ > ~/.git-credentials
+git config -l
