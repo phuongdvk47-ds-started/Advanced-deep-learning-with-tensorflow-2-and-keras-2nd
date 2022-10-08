@@ -93,14 +93,16 @@ dropout = 0.45
 '''
 
 model = tf.keras.models.Sequential()
-## first layer with N = 28*28 = 784
-model.add(tf.keras.layers.Dense(hidden_units, activation='relu', input_dim = input_size))
+## first with 256 Layers
+## ReLU(x) = max(0, x)
+model.add(tf.keras.layers.Dense(hidden_units, activation='relu', kernel_regularizer=tf.keras.regularizers.L2(0.001), input_dim = input_size))
 model.add(tf.keras.layers.Dropout(dropout))
-## second layer with N = 256
-model.add(tf.keras.layers.Dense(hidden_units, activation='relu'))
+## second with 256 Layers
+model.add(tf.keras.layers.Dense(hidden_units, activation='relu', kernel_regularizer=tf.keras.regularizers.L2(0.001)))
 model.add(tf.keras.layers.Dropout(dropout))
-## third layer with N = 10 (0..9)
-model.add(tf.keras.layers.Dense(num_labels, activation='softmax'))
+## third with with 10 Layers 
+#model.add(tf.keras.layers.Dense(num_labels, activation='softmax'))
+model.add(tf.keras.layers.Dense(num_labels, activation='sigmoid'))
 model.summary()
 
 #tf.keras.utils.plot_model(model, to_file= output_dir + '/mpl-mnist.png', show_shapes=True)
