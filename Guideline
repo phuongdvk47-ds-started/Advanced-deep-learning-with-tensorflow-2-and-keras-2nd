@@ -1,3 +1,6 @@
-git config --global credential.helper store
-echo “https://phuongdvk47.ds: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@github.com“ > ~/.git_credentials
-git config -l
+git clone 
+git add .
+git commit -m ""
+git push
+> phuongdvk47.ds
+> personal access token
