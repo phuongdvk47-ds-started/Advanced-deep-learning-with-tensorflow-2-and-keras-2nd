@@ -84,10 +84,11 @@ def get_model():
   return model
 
 model_gpu = get_model()
+model_gpu.summary()
 # train the network
-model_gpu.fit(x_train, y_train, epochs=10, batch_size=batch_size)
-_, acc = model_gpu.evaluate(x_test,
-                        y_test,
-                        batch_size=batch_size,
-                        verbose=0)
-print("\nTest accuracy: %.1f%%" % (100.0 * acc))
+#model_gpu.fit(x_train, y_train, epochs=10, batch_size=batch_size)
+#_, acc = model_gpu.evaluate(x_test,
+#                        y_test,
+#                        batch_size=batch_size,
+#                        verbose=0)
+#print("\nTest accuracy: %.1f%%" % (100.0 * acc))

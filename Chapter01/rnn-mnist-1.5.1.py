@@ -35,7 +35,7 @@ x_test = x_test.astype('float32') / 255
 input_shape = (image_size, image_size)
 batch_size = 128
 units = 256
-dropout = 0.2
+dropout = 0.45
 
 # model is RNN with 256 units, input is 28-dim vector 28 timesteps
 model = Sequential()
