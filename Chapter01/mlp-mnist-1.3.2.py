@@ -83,9 +83,7 @@ hidden_units = 256
 dropout = 0.45
 
 # model is a 3 layers MLP with ReLU and dropout after each layer
-#
 # Dense(784) -> Activation('relu') -> Dropout(0.45) -> Dense(256) ->  Activation('relu') --> Dropout(0.45) -> Dense(10) --> Activation('softmax')
-#
 '''
 * Dense layer is the regular deeply connected neural network layer. It is most common and frequently used layer. 
   Dense layer does the below operation on the input and return the output
@@ -110,14 +108,14 @@ model.summary()
 # Loss function for one-hot vector
 # use of adam optimizer
 # accuracy is good mectric for classification tasks
-model.compile(loss = 'categorical_crossentropy', 
+model.compile(loss = 'categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
+
 # train the network
 model.fit(x_train, y_train, epochs=20, batch_size=batch_size) 
 
 # validate the model on test dataset to determine generalization
 _, acc = model.evaluate(x_test, y_test, batch_size=batch_size, verbose=0)
 
-print("\n Test accuracy: %.1f%%" % (100.0 * acc))
-
+print("\n Test accuracy: {}", (100.0 * acc))

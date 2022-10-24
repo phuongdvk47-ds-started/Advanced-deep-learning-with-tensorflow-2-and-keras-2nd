@@ -8,7 +8,10 @@ h5py
 graphviz
 pydot
 pydot_ng
-tensorflow-addons
 termcolor
 gym
 tensorflow-probability
+tensorflow-addons
+tensorboard
+keras-vis
+tf-keras-vis

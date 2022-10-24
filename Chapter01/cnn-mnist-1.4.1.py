@@ -1,5 +1,5 @@
 ''' CNN MNIST digits classification
-3-layer CNN for MNIST digits classification 
+3-layer CNN for MNIST digits classification
 First 2 layers - Conv2D-ReLU-MaxPool
 3rd layer - Conv2D-ReLU-Dropout
 4th layer - Dense(10)
@@ -15,21 +15,21 @@ from __future__ import print_function
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Activation, Dense, Dropout
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
-from tensorflow.keras.utils import to_categorical, plot_model
-from tensorflow.keras.datasets import mnist
+# from tensorflow.keras.models import Sequential
+# from tensorflow.keras.layers import Activation, Dense, Dropout
+# from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
+# from tensorflow.keras.utils import to_categorical, plot_model
+# from tensorflow.keras.datasets import mnist
 
 # load mnist dataset
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
 # compute the number of labels
 num_labels = len(np.unique(y_train))
 
 # convert to one-hot vector
-y_train = to_categorical(y_train)
-y_test = to_categorical(y_test)
+y_train = tf.keras.utils.to_categorical(y_train)
+y_test = tf.keras.utils.to_categorical(y_test)
 
 # input image dimensions
 image_size = x_train.shape[1]
@@ -49,39 +49,39 @@ filters = 64
 dropout = 0.2
 
 def get_model():
-  # model is a stack of CNN-ReLU-MaxPooling
-  model = Sequential()
-  model.add(Conv2D(filters=filters,
-                  kernel_size=kernel_size,
-                  activation='relu',
-                  input_shape=input_shape))
-  model.add(MaxPooling2D(pool_size))
-  model.add(Conv2D(filters=filters,
-                  kernel_size=kernel_size,
-                  activation='relu'))
-  model.add(MaxPooling2D(pool_size))
-  model.add(Conv2D(filters=filters,
-                  kernel_size=kernel_size,
-                  activation='relu'))
-  model.add(Flatten())
-  # dropout added as regularizer
-  model.add(Dropout(dropout))
-  # output layer is 10-dim one-hot vector
-  model.add(Dense(num_labels))
-  model.add(Activation('softmax'))
-  model.summary()
-  # enable this if pydot can be installed
-  # pip install pydot
-  #plot_model(model, to_file='cnn-mnist.png', show_shapes=True)
+    # model is a stack of CNN-ReLU-MaxPooling
+    model = tf.keras.models.Sequential()
+    model.add(tf.keras.layers.Conv2D(filters=filters,
+                    kernel_size=kernel_size,
+                    activation='relu',
+                    input_shape=input_shape))
+    model.add(tf.keras.layers.MaxPooling2D(pool_size))
+    model.add(tf.keras.layers.Conv2D(filters=filters,
+                    kernel_size=kernel_size,
+                    activation='relu'))
+    model.add(tf.keras.layers.MaxPooling2D(pool_size))
+    model.add(tf.keras.layers.Conv2D(filters=filters,
+                    kernel_size=kernel_size,
+                    activation='relu'))
+    model.add(tf.keras.layers.Flatten())
+    # dropout added as regularizer
+    model.add(tf.keras.layers.Dropout(dropout))
+    # output layer is 10-dim one-hot vector
+    model.add(tf.keras.layers.Dense(num_labels))
+    model.add(tf.keras.layers.Activation('softmax'))
+    model.summary()
+    # enable this if pydot can be installed
+    # pip install pydot
+    #plot_model(model, to_file='cnn-mnist.png', show_shapes=True)
 
-  # loss function for one-hot vector
-  # use of adam optimizer
-  # accuracy is good metric for classification tasks
+    # loss function for one-hot vector
+    # use of adam optimizer
+    # accuracy is good metric for classification tasks
 
-  model.compile(loss='categorical_crossentropy',
-                optimizer='adam',
-                metrics=['accuracy'])
-  return model
+    model.compile(loss='categorical_crossentropy',
+                  optimizer='adam',
+                  metrics=['accuracy'])
+    return model
 
 model_gpu = get_model()
 model_gpu.summary()
