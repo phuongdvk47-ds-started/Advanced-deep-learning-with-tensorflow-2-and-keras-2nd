@@ -51,6 +51,8 @@ dropout = 0.2
 def get_model():
     # model is a stack of CNN-ReLU-MaxPooling
     model = tf.keras.models.Sequential()
+    # Add Convolutional layer with filters (64) kernels, each kernel with size 3*3
+    # filters is number of kernels
     model.add(tf.keras.layers.Conv2D(filters=filters,
                     kernel_size=kernel_size,
                     activation='relu',

@@ -28,9 +28,12 @@ import numpy as np
 import os
 import math
 
+
+
 # training parameters
 batch_size = 32 # orig paper trained all networks with batch_size=128
-epochs = 200
+#epochs = 200
+epochs = 50
 data_augmentation = True
 num_classes = 10
 
